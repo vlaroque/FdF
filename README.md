@@ -1,14 +1,17 @@
 # FdF
+
 projet FdF de 42
 
-## Notes de cours MinilibX
+## > Notes de cours MinilibX
+
+___
 
 `man /usr/share/man/man3/mlx.1`
 
+## > Fonctions
 
-## Fonctions
+### > Connection a la minilibX
 
-### Connection a la minilibX
 Include des fonctions de la librairie:
 `#include <mlx.h>`
 
@@ -16,28 +19,31 @@ Pour le link il faut ajouter ces flags a la compilation:
 `-lmlx -framework OpenGL -framework AppKit`
 
 Fonction qui connecte au serveur graphique x du mac:
+
 ```c
 void	*mlx_init()
 ```
 Elle renvoie un pointeur comme identifiant de connexion au serveur graphique, si echoue, renvoie un pointeur sur `NULL`
 
+### > Gestion des fenetres
 
-### Gestion des fenetres
-#### Creation d'une fenetre a l'ecran:
+#### > Creation d'une fenetre a l'ecran:
+
 ```c
 void	*mlx_new_window(void *mlx_ptr, int width, int height, char *title)
 ```
 Elle renvoie un pointeur comme identifiant de la fenetre.
 
-#### Reintialisation d'une fenetre
-
+#### > Reintialisation d'une fenetre
 
 Affichage d'un pixel dans la fenetre:
+
 ```c
 int mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color)
 ```
 
-#### Exemple personnel
+#### > Exemple personnel
+
 ```c
 int		main(void)
 {
@@ -50,7 +56,7 @@ int		main(void)
 }
 ```
 
-# Gestion des evenements
+## > Gestion des evenements
 
 Avant d'appeler mlx_loop, on appelle mlx_key_hook :
 ```c
@@ -69,3 +75,21 @@ int deal_key(int key, void *param)
 }
 ```
 Le parametre "`void param`" est a utiliser pour transmettre les variables mlx_ptr et win_ptr.
+
+## > Gestion des images
+
+```c
+void *mlx_new_image(void *mlx_ptr, int width, int height);
+
+char *mlx_get_data_addr(void *img_ptr, int *bits_per_pixel, int *size_line, int *endian);
+
+int mlx_put_image_to_window(void *mlx_ptr, void *win_ptr, void *img_ptr, int x, int y);
+
+unsigned int mlx_get_color_value(void *mlx_ptr, int color);
+
+void *mlx_xpm_to_image(void *mlx_ptr, char **xpm_data, int *width, int *height);
+
+void *mlx_xpm_file_to_image(void *mlx_ptr, char *filename, int *width, int *height);
+
+int mlx_destroy_image(void *mlx_ptr, void *img_ptr);
+```
