@@ -6,7 +6,7 @@
 /*   By: vlaroque <vlaroque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 18:14:01 by vlaroque          #+#    #+#             */
-/*   Updated: 2019/03/24 20:54:13 by vlaroque         ###   ########.fr       */
+/*   Updated: 2019/03/27 16:05:59 by vlaroque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 typedef		struct s_imgdata
 {
 	void	*img_ptr;
-	char	*img_data;
+	char	*img_content;
 	int		bits_in_pix;
 	int		size_line;
 	int		endian;

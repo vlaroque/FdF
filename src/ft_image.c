@@ -6,7 +6,7 @@
 /*   By: vlaroque <vlaroque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 18:13:08 by vlaroque          #+#    #+#             */
-/*   Updated: 2019/03/24 20:53:04 by vlaroque         ###   ########.fr       */
+/*   Updated: 2019/03/27 16:06:13 by vlaroque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_imgdata	*ft_create_img(void *mlx_ptr, int width, int height)
 	idata->width = width;
 	idata->height = height;
 	idata->img_ptr = mlx_new_image(mlx_ptr, width, height);
-	idata->img_data = mlx_get_data_addr(idata->img_ptr, &(idata->bits_in_pix),
+	idata->img_content = mlx_get_data_addr(idata->img_ptr, &(idata->bits_in_pix),
 		&(idata->size_line), &(idata->endian));
 
 	printf("bits = %d size = %d, endian = %d\n", idata->bits_in_pix, idata->size_line, idata->endian);
@@ -38,7 +38,7 @@ int			ft_color_pix(t_imgdata *data, int x, int y, int color)
 
 	dist = y * data->size_line + (x * (data->bits_in_pix / 8));
 	dist = dist / 4;
-	pix = (int *)data->img_data;
+	pix = (int *)data->img_content;
 	pix[dist] = color;
 	return (0);
 }
