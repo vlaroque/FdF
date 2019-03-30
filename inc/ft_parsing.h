@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_parsing.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlaroque <vlaroque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/24 20:46:34 by vlaroque          #+#    #+#             */
-/*   Updated: 2019/03/30 15:27:22 by vlaroque         ###   ########.fr       */
+/*   Created: 2019/03/30 16:56:17 by vlaroque          #+#    #+#             */
+/*   Updated: 2019/03/30 18:47:56 by vlaroque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef	FT_PARSING_H
+# define FT_PARSING_H
 
-typedef		struct s_point
+typedef struct	s_ptdata
 {
-	int x;
-	int y;
-}			t_point;
+	int			z;
+	int			color;
+}				t_ptdata;
 
-typedef		struct s_seg
+typedef struct s_ptstable
 {
-	t_point	pt0;
-	t_point	pt1;
-	int		clr0;
-	int		clr1;
-}			t_seg;
+	int			x_max;
+	int			y_max;
+	t_ptdata	*table;
+}				t_ptstable;
 
-typedef		struct s_inter
-{
-	t_point	point;
-	int		color;
-}			t_inter;
-
-
-#endif

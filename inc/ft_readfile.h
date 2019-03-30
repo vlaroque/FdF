@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_readfile.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlaroque <vlaroque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/24 20:46:34 by vlaroque          #+#    #+#             */
-/*   Updated: 2019/03/30 15:27:22 by vlaroque         ###   ########.fr       */
+/*   Created: 2019/03/30 11:55:03 by vlaroque          #+#    #+#             */
+/*   Updated: 2019/03/30 15:37:01 by vlaroque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef FT_READFILE_H
+# define FT_READFILE_H
+# include <unistd.h>
+# define BUFF 1
 
-typedef		struct s_point
+char	*ft_readfile(const char *path);
+typedef struct s_strpart t_part;
+struct s_strpart
 {
-	int x;
-	int y;
-}			t_point;
-
-typedef		struct s_seg
-{
-	t_point	pt0;
-	t_point	pt1;
-	int		clr0;
-	int		clr1;
-}			t_seg;
-
-typedef		struct s_inter
-{
-	t_point	point;
-	int		color;
-}			t_inter;
-
+	size_t	len;
+	char	str[BUFF];
+	t_part	*next;
+};
 
 #endif
