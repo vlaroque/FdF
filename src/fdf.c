@@ -6,7 +6,7 @@
 /*   By: vlaroque <vlaroque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 19:20:45 by vlaroque          #+#    #+#             */
-/*   Updated: 2019/03/30 16:36:16 by vlaroque         ###   ########.fr       */
+/*   Updated: 2019/04/05 11:55:07 by vlaroque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		main(int ac, char **av)
 	t_imgdata	*data;
 	char		*path;
 
-	t_seg	seg = {{400 ,400}, {10, 350}, 0x0000ff, 0xff0000};
+	t_seg	seg = {{400 ,400, 0x0000ff}, {20, 350, 0xff0000}};
 
 	path = av[1];
 	printf("%s", ft_readfile(path));

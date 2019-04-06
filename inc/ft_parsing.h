@@ -6,7 +6,7 @@
 /*   By: vlaroque <vlaroque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 16:56:17 by vlaroque          #+#    #+#             */
-/*   Updated: 2019/03/30 18:47:56 by vlaroque         ###   ########.fr       */
+/*   Updated: 2019/04/02 11:47:47 by vlaroque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,3 +26,4 @@ typedef struct s_ptstable
 	t_ptdata	*table;
 }				t_ptstable;
 
+#endif

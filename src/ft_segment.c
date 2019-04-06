@@ -6,7 +6,7 @@
 /*   By: vlaroque <vlaroque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 20:43:11 by vlaroque          #+#    #+#             */
-/*   Updated: 2019/03/27 17:20:19 by vlaroque         ###   ########.fr       */
+/*   Updated: 2019/04/05 11:51:19 by vlaroque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int			ft_what_color(int x, int x_max, t_seg seg)
 {
 	int color;
 
-	color = ((x * (seg.clr0 % 256) + (x_max - x) * (seg.clr1 % 256)) / x_max)
-		+ ((x * ((seg.clr0 / 256) % 256) + (x_max - x) * ((seg.clr1 / 256) % 256)) / x_max) * 256
-		+ ((x * ((seg.clr0 / 65536) % 256) + (x_max - x) * ((seg.clr1 / 65536) % 256)) / x_max) * 65536;
+	color = ((x * (seg.pt0.color % 256) + (x_max - x) * (seg.pt1.color % 256)) / x_max)
+		+ ((x * ((seg.pt0.color / 256) % 256) + (x_max - x) * ((seg.pt1.color / 256) % 256)) / x_max) * 256
+		+ ((x * ((seg.pt0.color / 65536) % 256) + (x_max - x) * ((seg.pt1.color / 65536) % 256)) / x_max) * 65536;
 	return (color);
 }
 
@@ -133,9 +133,9 @@ int			ft_segment(t_imgdata *data, t_seg seg)
 		save = seg.pt0;
 		seg.pt0 = seg.pt1;
 		seg.pt1 = save;
-		colorsave = seg.clr0;
-		seg.clr0 = seg.clr1;
-		seg.clr1 = colorsave;
+		colorsave = seg.pt0.color;
+		seg.pt0.color = seg.pt1.color;
+		seg.pt1.color = colorsave;
 	}
 	if (seg.pt0.y <= seg.pt1.y)
 	{
