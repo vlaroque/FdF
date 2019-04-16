@@ -6,7 +6,7 @@
 /*   By: vlaroque <vlaroque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 16:56:17 by vlaroque          #+#    #+#             */
-/*   Updated: 2019/04/02 11:47:47 by vlaroque         ###   ########.fr       */
+/*   Updated: 2019/04/16 17:03:19 by vlaroque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ typedef struct s_ptstable
 	int			y_max;
 	t_ptdata	*table;
 }				t_ptstable;
+
+t_ptstable	*parser(char *str);
 
 #endif
