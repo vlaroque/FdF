@@ -6,13 +6,15 @@
 /*   By: vlaroque <vlaroque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 18:13:08 by vlaroque          #+#    #+#             */
-/*   Updated: 2019/03/27 16:06:13 by vlaroque         ###   ########.fr       */
+/*   Updated: 2019/04/19 01:50:42 by vlaroque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
 #include <stdlib.h>
+#include "fdf.h"
 #include "ft_image.h"
+
 #include <stdio.h>
 
 t_imgdata	*ft_create_img(void *mlx_ptr, int width, int height)
