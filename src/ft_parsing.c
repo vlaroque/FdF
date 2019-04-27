@@ -6,7 +6,7 @@
 /*   By: vlaroque <vlaroque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 16:36:13 by vlaroque          #+#    #+#             */
-/*   Updated: 2019/04/19 01:54:32 by vlaroque         ###   ########.fr       */
+/*   Updated: 2019/04/27 19:00:30 by vlaroque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int			ft_isdigit(char c)
 
 int			ft_ishexa(char c)
 {
-	if (c >= '0' && c <= '0')
+	if (c >= '0' && c <= '9')
 		return (c - '0');
 	else if (c >= 'A' && c <= 'F')
 		return (c - 'A' + 10);
@@ -135,14 +135,15 @@ t_ptdata	*parsing_fill(char *str, t_ptdata *pts, int x_max, int y_max)
 				pts[x + (y * x_max)].color = 0xFFFFFF;
 			pts[x + (y * x_max)].x = x;
 			pts[x + (y * x_max)].y = y;
+			//printf("x = %d, y = %d z = %d  color = %#x\n", x, y,pts[x + (y * x_max)].z, pts[x + (y * x_max)].color);
 			x++;
 		}
-	while (str[i] == ' ')
+		while (str[i] == ' ')
+			i++;
+		if (str[i] != '\n')
+			return (NULL);
 		i++;
-	if (str[i] != '\n')
-		return (NULL);
-	i++;
-	y++;
+		y++;
 	}
 	return (pts);
 }
@@ -157,8 +158,8 @@ t_ptstable	*parser(char *str)
 		return (NULL);
 	grid->x_max = x_max(str);
 	grid->y_max = y_max(str);
-	if (!(grid->table = (t_ptdata *)malloc(sizeof(t_ptdata) * grid->x_max * grid->y_max)))
-		return (0);
+	if (!(grid->table = (t_ptdata *)malloc((sizeof(t_ptdata) * grid->x_max * grid->y_max))))
+		return (NULL);
 	grid->table = parsing_fill(str, grid->table, grid->x_max, grid->y_max);
 	return (grid);
 }

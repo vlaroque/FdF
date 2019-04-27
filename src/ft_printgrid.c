@@ -6,7 +6,7 @@
 /*   By: vlaroque <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 21:46:11 by vlaroque          #+#    #+#             */
-/*   Updated: 2019/04/26 19:41:47 by vlaroque         ###   ########.fr       */
+/*   Updated: 2019/04/27 20:48:31 by vlaroque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,28 @@
 #include "fdf.h"
 #include "ft_segment.h"
 
-t_point		trnspoint(t_ptdata data)
+t_point		trnspoint(t_ptdata data, int x_max, int y_max)
 {
 	t_point		point;
-	double		x;
-	double		y;
-	double		z;
-	double		a;
-	double		w;
-	double		x2d;
-	double		y2d;
+	t_data		d;
 
-	x = data.x;
-	y = data.y;
-	z = data.z;
-	a = 20.0;
-	w = 30.0;
+	d.x3d_offset = (double)x_max / 2.0 - 0.5;
+	d.y3d_offset = (double)y_max / 2.0 - 0.5;
+	d.x2d_offset = ((double)WIDTH) / 2.0;
+	d.y2d_offset = ((double)HEIGHT) / 2.0;
+
+	d.x = data.x - d.x3d_offset;
+	d.y = data.y - d.y3d_offset;
+	d.z = data.z;
+	d.a = 20.0;
+	d.w = 30.0;
+	d.zoom = 20.0;
+
 	point.color = data.color;
-	x2d = cos(w) * x - (sin(w) * y);
-	point.x = x2d * 10.0;
-	y2d = -sin(w) * sin(a) * x - cos(w) * sin(a) * y + cos(a) * z;
-	point.y = y2d * 10.0; 
+	d.x2d = cos(d.w) * d.x - (sin(d.w) * d.y);
+	point.x = d.x2d * d.zoom + d.x2d_offset;
+	d.y2d = -sin(d.w) * sin(d.a) * d.x - cos(d.w) * sin(d.a) * d.y + cos(d.a) * d.z;
+	point.y = -d.y2d * d.zoom + d.y2d_offset; 
 	return (point);
 }
 
@@ -48,13 +49,13 @@ t_point		trnspoint(t_ptdata data)
 	return (point);
 }*/
 
-void	seg(t_imgdata *img, t_ptdata one, t_ptdata two)
+void	seg(t_imgdata *img, t_ptdata one, t_ptdata two, t_ptstable *tab)
 {
 	t_seg seg;
 // ATTENTION A MODIFIER !
 
-	seg.pt0 = trnspoint(one);
-	seg.pt1 = trnspoint(two);
+	seg.pt0 = trnspoint(one, tab->x_max, tab->y_max);
+	seg.pt1 = trnspoint(two, tab->x_max, tab->y_max);
 	ft_segment(img, seg);
 }
 
@@ -65,10 +66,10 @@ int		printgrid(t_imgdata *img, t_ptstable *tab)
 	i = 0;
 	while(i < tab->x_max * tab->y_max)
 	{
-		if (i % tab->x_max != tab->x_max - 1)						// tout sauf x_max
-			seg(img, tab->table[i], tab->table[i + 1]);				//segment horizontal
-		if ((i / tab->x_max) != (tab->y_max - 1))					// tout sauf y_max
-			seg(img, tab->table[i], tab->table[i + tab->x_max]);	//segment vertical
+		if (i % tab->x_max != tab->x_max - 1)							// tout sauf x_max
+			seg(img, tab->table[i], tab->table[i + 1], tab);			//segment horizontal
+		if ((i / tab->x_max) != (tab->y_max - 1))						// tout sauf y_max
+			seg(img, tab->table[i], tab->table[i + tab->x_max], tab);	//segment vertical
 		i++;
 	}
 	return (1);

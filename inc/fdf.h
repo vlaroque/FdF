@@ -6,7 +6,7 @@
 /*   By: vlaroque <vlaroque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 20:46:34 by vlaroque          #+#    #+#             */
-/*   Updated: 2019/04/26 11:52:44 by vlaroque         ###   ########.fr       */
+/*   Updated: 2019/04/27 20:48:28 by vlaroque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef		struct s_seg
 
 /*
  * t_ptstable contient tous les points avec leurs dimentions en 3D
- * t_ptdata contient les informations sur le z et la couleur d'un pt
+ * t_ptdata contient les informations sur le x, y et z et la couleur d'un pt
  */
 
 typedef struct	s_ptdata
@@ -68,8 +68,24 @@ typedef struct s_ptstable
 	t_ptdata	*table;
 }				t_ptstable;
 
+typedef struct	s_data
+{
+	double		x;
+	double		y;
+	double		z;
+	double		a;
+	double		w;
+	double		x2d;
+	double		y2d;
+	double		zoom;
+	double		x3d_offset;
+	double		y3d_offset;
+	double		x2d_offset;
+	double		y2d_offset;
+}				t_data;
+
 /* window informations */
-# define WIDTH 500
-# define HEIGHT 400
+# define WIDTH 1000
+# define HEIGHT 800
 
 #endif
