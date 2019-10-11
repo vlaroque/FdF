@@ -6,7 +6,7 @@
 /*   By: vlaroque <vlaroque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 20:46:34 by vlaroque          #+#    #+#             */
-/*   Updated: 2019/04/27 20:48:28 by vlaroque         ###   ########.fr       */
+/*   Updated: 2019/04/28 22:20:00 by vlaroque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,9 @@ typedef struct	s_data
 	double		y;
 	double		z;
 	double		a;
+	int			a_int;
 	double		w;
+	int			w_int;
 	double		x2d;
 	double		y2d;
 	double		zoom;
@@ -82,10 +84,20 @@ typedef struct	s_data
 	double		y3d_offset;
 	double		x2d_offset;
 	double		y2d_offset;
+	double		z_proportion;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	void		*img_ptr;
+	t_ptstable	*tab;
+	t_imgdata	*imgdata;
 }				t_data;
+
+int		printgrid(t_data *data);
 
 /* window informations */
 # define WIDTH 1000
 # define HEIGHT 800
+
+//#define M_PI       3.14159265358979323846
 
 #endif

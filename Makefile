@@ -6,7 +6,7 @@
 #    By: vlaroque <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/17 09:52:18 by vlaroque          #+#    #+#              #
-#    Updated: 2019/04/19 01:48:15 by vlaroque         ###   ########.fr        #
+#    Updated: 2019/10/11 19:52:13 by vlaroque         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,14 +31,14 @@ HEADER := $(addprefix $(INCLUDES_PATH),$(INCLUDES_NAME))
 # COMPILATION
 NAME := Fdf
 CC := clang
-CFLAGS := -Wall -Wextra #-Weverything #-Wno-padded# -Werror
+CFLAGS := -Wall -Wextra -g #-Weverything #-Wno-padded# -Werror
 FLAGS := -lmlx -framework OpenGL -framework AppKit
 
 # RULES
 all: $(NAME) 
 
 $(NAME): $(OBJ)
-	@$(CC) $(OBJ) -o $@ $(FLAGS)
+	@$(CC) $(OBJ) -o $@ $(FLAGS) #-ofast
 	@echo "\033[32m$(NAME) generated with succes !\033[0m"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c $(HEADER)

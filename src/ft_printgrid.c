@@ -6,7 +6,7 @@
 /*   By: vlaroque <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 21:46:11 by vlaroque          #+#    #+#             */
-/*   Updated: 2019/04/27 20:48:31 by vlaroque         ###   ########.fr       */
+/*   Updated: 2019/10/11 19:48:23 by vlaroque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,63 +14,85 @@
 #include "fdf.h"
 #include "ft_segment.h"
 
-t_point		trnspoint(t_ptdata data, int x_max, int y_max)
+t_point		trnspoint(t_data *d, t_ptdata ptdata)
 {
 	t_point		point;
-	t_data		d;
 
-	d.x3d_offset = (double)x_max / 2.0 - 0.5;
-	d.y3d_offset = (double)y_max / 2.0 - 0.5;
-	d.x2d_offset = ((double)WIDTH) / 2.0;
-	d.y2d_offset = ((double)HEIGHT) / 2.0;
+	d->x = ptdata.x - d->x3d_offset;
+	d->y = ptdata.y - d->y3d_offset;
+	d->z = ptdata.z * d->z_proportion;
 
-	d.x = data.x - d.x3d_offset;
-	d.y = data.y - d.y3d_offset;
-	d.z = data.z;
-	d.a = 20.0;
-	d.w = 30.0;
-	d.zoom = 20.0;
-
-	point.color = data.color;
-	d.x2d = cos(d.w) * d.x - (sin(d.w) * d.y);
-	point.x = d.x2d * d.zoom + d.x2d_offset;
-	d.y2d = -sin(d.w) * sin(d.a) * d.x - cos(d.w) * sin(d.a) * d.y + cos(d.a) * d.z;
-	point.y = -d.y2d * d.zoom + d.y2d_offset; 
+	point.color = ptdata.color;
+	d->x2d = cos(d->w) * d->x - (sin(d->w) * d->y);
+	point.x = d->x2d * d->zoom + d->x2d_offset;
+	d->y2d = -sin(d->w) * sin(d->a) * d->x - cos(d->w) * sin(d->a) * d->y + cos(d->a) * d->z;
+	point.y = -d->y2d * d->zoom + d->y2d_offset;
 	return (point);
 }
 
-/*t_point		trnspoint(t_ptdata data)
-{
-	t_point		point;
-
-	point.color = data.color;
-	point.x = data.x * 15;
-	point.y = (data.y * 15) - data.z;
-	return (point);
-}*/
-
-void	seg(t_imgdata *img, t_ptdata one, t_ptdata two, t_ptstable *tab)
+void	seg(t_data *data, t_ptdata one, t_ptdata two)
 {
 	t_seg seg;
 // ATTENTION A MODIFIER !
 
-	seg.pt0 = trnspoint(one, tab->x_max, tab->y_max);
-	seg.pt1 = trnspoint(two, tab->x_max, tab->y_max);
-	ft_segment(img, seg);
+	seg.pt0 = trnspoint(data, one);
+	seg.pt1 = trnspoint(data, two);
+	ft_segment(data->imgdata, seg);
 }
 
-int		printgrid(t_imgdata *img, t_ptstable *tab)
+int		printgrid_xmax_ymax(t_data *data)
+{
+	int i;
+
+	i = data->tab->x_max * data->tab->y_max - 1;
+	while(i >= 0)
+	{
+		if (i % data->tab->x_max != 0)							// tout sauf x_0
+			seg(data, data->tab->table[i], data->tab->table[i - 1]);			//segment horizontal
+		if ((i / data->tab->x_max) != 0)						// tout sauf y_0
+			seg(data, data->tab->table[i], data->tab->table[i - data->tab->x_max]);	//segment vertical
+		i--;
+	}
+	return (1);
+}
+
+int		printgrid_zero(t_data *data)
 {
 	int i;
 
 	i = 0;
-	while(i < tab->x_max * tab->y_max)
+	while(i < data->tab->x_max * data->tab->y_max)
 	{
-		if (i % tab->x_max != tab->x_max - 1)							// tout sauf x_max
-			seg(img, tab->table[i], tab->table[i + 1], tab);			//segment horizontal
-		if ((i / tab->x_max) != (tab->y_max - 1))						// tout sauf y_max
-			seg(img, tab->table[i], tab->table[i + tab->x_max], tab);	//segment vertical
+		if (i % data->tab->x_max != data->tab->x_max - 1)							// tout sauf x_max
+			seg(data, data->tab->table[i], data->tab->table[i + 1]);			//segment horizontal
+		if ((i / data->tab->x_max) != (data->tab->y_max - 1))						// tout sauf y_max
+			seg(data, data->tab->table[i], data->tab->table[i + data->tab->x_max]);	//segment vertical
 		i++;
 	}
 	return (1);
 }
+
+int		printgrid(t_data *data)
+{
+	int w;
+	int a;
+
+	w = data->w_int;
+	a = data->a_int;
+	if ((w <= -20 && w >= -39) || (w >= 21 && w <= 40))
+	{
+		if((a <= 20 && a >= -20))
+			printgrid_xmax_ymax(data);
+		else
+			printgrid_zero(data);
+	}
+	else
+	{
+		if (!((a <= 20 && a >= -20)))
+			printgrid_xmax_ymax(data);
+		else
+			printgrid_zero(data);
+	}
+	return (1);
+}
+

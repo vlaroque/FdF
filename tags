@@ -1,0 +1,114 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+BUFF	inc/ft_readfile.h	/^# define BUFF /;"	d
+CC	Makefile	/^CC := clang$/;"	m
+CFLAGS	Makefile	/^CFLAGS := -Wall -Wextra -g #-Weverything #-Wno-padded# -Werror$/;"	m
+FDF_H	inc/fdf.h	/^# define FDF_H$/;"	d
+FLAGS	Makefile	/^FLAGS := -lmlx -framework OpenGL -framework AppKit$/;"	m
+FT_IMG_H	inc/ft_image.h	/^# define FT_IMG_H$/;"	d
+FT_PARSING_H	inc/ft_parsing.h	/^# define FT_PARSING_H$/;"	d
+FT_READFILE_H	inc/ft_readfile.h	/^# define FT_READFILE_H$/;"	d
+FT_SEGMENT_H	inc/ft_segment.h	/^# define FT_SEGMENT_H$/;"	d
+HEADER	Makefile	/^HEADER := $(addprefix $(INCLUDES_PATH),$(INCLUDES_NAME))$/;"	m
+HEIGHT	inc/fdf.h	/^# define HEIGHT /;"	d
+INCLUDES_NAME	Makefile	/^INCLUDES_NAME := fdf.h ft_image.h ft_parsing.h ft_readfile.h ft_segment.h$/;"	m
+INCLUDES_PATH	Makefile	/^INCLUDES_PATH := .\/inc\/$/;"	m
+NAME	Makefile	/^NAME := Fdf$/;"	m
+OBJ	Makefile	/^OBJ := $(addprefix $(OBJ_PATH),$(SRC_FILES:.c=.o))$/;"	m
+OBJ_PATH	Makefile	/^OBJ_PATH := .\/obj\/$/;"	m
+SRC	Makefile	/^SRC := $(addprefix $(SRC_PATH),$(SRC_FILES))$/;"	m
+SRC_FILES	Makefile	/^SRC_FILES := fdf.c ft_image.c ft_parsing.c ft_readfile.c ft_segment.c ft_printgrid.c$/;"	m
+SRC_PATH	Makefile	/^SRC_PATH := .\/src\/$/;"	m
+WIDTH	inc/fdf.h	/^# define WIDTH /;"	d
+a	inc/fdf.h	/^	double		a;$/;"	m	struct:s_data
+a_int	inc/fdf.h	/^	int			a_int;$/;"	m	struct:s_data
+bits_in_pix	inc/fdf.h	/^	int		bits_in_pix;$/;"	m	struct:s_imgdata
+color	inc/fdf.h	/^	int			color;$/;"	m	struct:s_ptdata
+color	inc/fdf.h	/^	int color;$/;"	m	struct:s_point
+endian	inc/fdf.h	/^	int		endian;$/;"	m	struct:s_imgdata
+erase_img	src/fdf.c	/^void	erase_img(int *imgbuff)$/;"	f
+ft_color_pix	src/ft_image.c	/^int			ft_color_pix(t_imgdata *data, int x, int y, int color)$/;"	f
+ft_create_img	src/ft_image.c	/^t_imgdata	*ft_create_img(void *mlx_ptr, int width, int height)$/;"	f
+ft_file_to_list	src/ft_readfile.c	/^t_part	*ft_file_to_list(int fd)$/;"	f
+ft_fill_str	src/ft_readfile.c	/^char	*ft_fill_str(t_part *init, char *str)$/;"	f
+ft_isdigit	src/ft_parsing.c	/^int			ft_isdigit(char c)$/;"	f
+ft_ishexa	src/ft_parsing.c	/^int			ft_ishexa(char c)$/;"	f
+ft_isinwin	src/ft_segment.c	/^int			ft_isinwin(int x, int y)$/;"	f
+ft_make_str	src/ft_readfile.c	/^char	*ft_make_str(t_part *init)$/;"	f
+ft_readfile	src/ft_readfile.c	/^char	*ft_readfile(const char *path)$/;"	f
+ft_segment	src/ft_segment.c	/^int			ft_segment(t_imgdata *data, t_seg seg)$/;"	f
+ft_segt_fall	src/ft_segment.c	/^int			ft_segt_fall(t_imgdata *data, t_seg seg)$/;"	f
+ft_segt_landing	src/ft_segment.c	/^int			ft_segt_landing(t_imgdata *data, t_seg seg)$/;"	f
+ft_segt_plane	src/ft_segment.c	/^int			ft_segt_plane(t_imgdata *data, t_seg seg)$/;"	f
+ft_segt_rocket	src/ft_segment.c	/^int			ft_segt_rocket(t_imgdata *data, t_seg seg)$/;"	f
+ft_what_color	src/ft_segment.c	/^int			ft_what_color(int x, int x_max, t_seg seg)$/;"	f
+height	inc/fdf.h	/^	int		height;$/;"	m	struct:s_imgdata
+img_content	inc/fdf.h	/^	char	*img_content;$/;"	m	struct:s_imgdata
+img_ptr	inc/fdf.h	/^	void		*img_ptr;$/;"	m	struct:s_data
+img_ptr	inc/fdf.h	/^	void	*img_ptr;$/;"	m	struct:s_imgdata
+imgdata	inc/fdf.h	/^	t_imgdata	*imgdata;$/;"	m	struct:s_data
+key_hook	src/fdf.c	/^int		key_hook(int keycode, t_data *data)$/;"	f
+len	inc/ft_readfile.h	/^	size_t	len;$/;"	m	struct:s_strpart
+loop_hook	src/fdf.c	/^int		loop_hook(void *nothing)$/;"	f
+main	src/fdf.c	/^int		main(int ac, char **av)$/;"	f
+mini_atoi	src/ft_parsing.c	/^int			mini_atoi(char *str, int *h)$/;"	f
+mini_atoi_hexa	src/ft_parsing.c	/^int			mini_atoi_hexa(char *str, int *h)$/;"	f
+mlx_ptr	inc/fdf.h	/^	void		*mlx_ptr;$/;"	m	struct:s_data
+next	inc/ft_readfile.h	/^	t_part	*next;$/;"	m	struct:s_strpart
+parser	src/ft_parsing.c	/^t_ptstable	*parser(char *str)$/;"	f
+parsing_fill	src/ft_parsing.c	/^t_ptdata	*parsing_fill(char *str, t_ptdata *pts, int x_max, int y_max)$/;"	f
+pirotation	src/fdf.c	/^double	pirotation(int *var, int op)$/;"	f
+print_new_img	src/fdf.c	/^int		print_new_img(t_data *data)$/;"	f
+printgrid	src/ft_printgrid.c	/^int		printgrid(t_data *data)$/;"	f
+printgrid_xmax_ymax	src/ft_printgrid.c	/^int		printgrid_xmax_ymax(t_data *data)$/;"	f
+printgrid_zero	src/ft_printgrid.c	/^int		printgrid_zero(t_data *data)$/;"	f
+pt0	inc/fdf.h	/^	t_point	pt0;$/;"	m	struct:s_seg
+pt1	inc/fdf.h	/^	t_point	pt1;$/;"	m	struct:s_seg
+s_data	inc/fdf.h	/^typedef struct	s_data$/;"	s
+s_imgdata	inc/fdf.h	/^typedef		struct s_imgdata$/;"	s
+s_point	inc/fdf.h	/^typedef		struct s_point$/;"	s
+s_ptdata	inc/fdf.h	/^typedef struct	s_ptdata$/;"	s
+s_ptstable	inc/fdf.h	/^typedef struct s_ptstable$/;"	s
+s_seg	inc/fdf.h	/^typedef		struct s_seg$/;"	s
+s_strpart	inc/ft_readfile.h	/^struct s_strpart$/;"	s
+seg	src/ft_printgrid.c	/^void	seg(t_data *data, t_ptdata one, t_ptdata two)$/;"	f
+size_line	inc/fdf.h	/^	int		size_line;$/;"	m	struct:s_imgdata
+str	inc/ft_readfile.h	/^	char	str[BUFF];$/;"	m	struct:s_strpart
+t_data	inc/fdf.h	/^}				t_data;$/;"	t	typeref:struct:s_data
+t_imgdata	inc/fdf.h	/^}			t_imgdata;$/;"	t	typeref:struct:s_imgdata
+t_part	inc/ft_readfile.h	/^typedef struct s_strpart t_part;$/;"	t	typeref:struct:s_strpart
+t_point	inc/fdf.h	/^}			t_point;$/;"	t	typeref:struct:s_point
+t_ptdata	inc/fdf.h	/^}				t_ptdata;$/;"	t	typeref:struct:s_ptdata
+t_ptstable	inc/fdf.h	/^}				t_ptstable;$/;"	t	typeref:struct:s_ptstable
+t_seg	inc/fdf.h	/^}			t_seg;$/;"	t	typeref:struct:s_seg
+tab	inc/fdf.h	/^	t_ptstable	*tab;$/;"	m	struct:s_data
+table	inc/fdf.h	/^	t_ptdata	*table;$/;"	m	struct:s_ptstable
+trnspoint	src/ft_printgrid.c	/^t_point		trnspoint(t_data *d, t_ptdata ptdata)$/;"	f
+w	inc/fdf.h	/^	double		w;$/;"	m	struct:s_data
+w_int	inc/fdf.h	/^	int			w_int;$/;"	m	struct:s_data
+width	inc/fdf.h	/^	int		width;$/;"	m	struct:s_imgdata
+win_ptr	inc/fdf.h	/^	void		*win_ptr;$/;"	m	struct:s_data
+x	inc/fdf.h	/^	double		x;$/;"	m	struct:s_data
+x	inc/fdf.h	/^	int			x;$/;"	m	struct:s_ptdata
+x	inc/fdf.h	/^	int x;$/;"	m	struct:s_point
+x2d	inc/fdf.h	/^	double		x2d;$/;"	m	struct:s_data
+x2d_offset	inc/fdf.h	/^	double		x2d_offset;$/;"	m	struct:s_data
+x3d_offset	inc/fdf.h	/^	double		x3d_offset;$/;"	m	struct:s_data
+x_max	inc/fdf.h	/^	int			x_max;$/;"	m	struct:s_ptstable
+x_max	src/ft_parsing.c	/^static int x_max(char *str)$/;"	f	file:
+y	inc/fdf.h	/^	double		y;$/;"	m	struct:s_data
+y	inc/fdf.h	/^	int			y;$/;"	m	struct:s_ptdata
+y	inc/fdf.h	/^	int y;$/;"	m	struct:s_point
+y2d	inc/fdf.h	/^	double		y2d;$/;"	m	struct:s_data
+y2d_offset	inc/fdf.h	/^	double		y2d_offset;$/;"	m	struct:s_data
+y3d_offset	inc/fdf.h	/^	double		y3d_offset;$/;"	m	struct:s_data
+y_max	inc/fdf.h	/^	int			y_max;$/;"	m	struct:s_ptstable
+y_max	src/ft_parsing.c	/^static int y_max(char *str)$/;"	f	file:
+z	inc/fdf.h	/^	double		z;$/;"	m	struct:s_data
+z	inc/fdf.h	/^	int			z;$/;"	m	struct:s_ptdata
+z_proportion	inc/fdf.h	/^	double		z_proportion;$/;"	m	struct:s_data
+zoom	inc/fdf.h	/^	double		zoom;$/;"	m	struct:s_data

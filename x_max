@@ -1,0 +1,13 @@
+./src/fdf.c:	data.x3d_offset = (double)data.tab->x_max / 2.0 - 0.5;
+./src/fdf.c:	data.y3d_offset = (double)data.tab->y_max / 2.0 - 0.5;
+./src/ft_printgrid.c:	i = data->tab->x_max * data->tab->y_max - 1;
+./src/ft_printgrid.c:		if (i % data->tab->x_max != 0)							// tout sauf x_0
+./src/ft_printgrid.c:			seg(data, data->tab->table[i], data->tab->table[i - 1]);			//segment horizontal
+./src/ft_printgrid.c:		if ((i / data->tab->x_max) != 0)						// tout sauf y_0
+./src/ft_printgrid.c:			seg(data, data->tab->table[i], data->tab->table[i - data->tab->x_max]);	//segment vertical
+./src/ft_printgrid.c:	while(i < data->tab->x_max * data->tab->y_max)
+./src/ft_printgrid.c:		if (i % data->tab->x_max != data->tab->x_max - 1)							// tout sauf x_max
+./src/ft_printgrid.c:			seg(data, data->tab->table[i], data->tab->table[i + 1]);			//segment horizontal
+./src/ft_printgrid.c:		if ((i / data->tab->x_max) != (data->tab->y_max - 1))						// tout sauf y_max
+./src/ft_printgrid.c:			printf("aint = %d x_max = %d\n", data->a_int, data->tab->x_max);
+./src/ft_printgrid.c:			seg(data, data->tab->table[i], data->tab->table[i + data->tab->x_max]);	//segment vertical
