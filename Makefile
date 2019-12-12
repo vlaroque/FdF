@@ -6,7 +6,7 @@
 #    By: vlaroque <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/17 09:52:18 by vlaroque          #+#    #+#              #
-#    Updated: 2019/12/11 19:02:44 by vlaroque         ###   ########.fr        #
+#    Updated: 2019/12/13 00:31:48 by vlaroque         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ OBJ := $(addprefix $(OBJ_PATH),$(SRC_FILES:.c=.o))
 HEADER := $(addprefix $(INCLUDES_PATH),$(INCLUDES_NAME))
 
 # COMPILATION
-NAME := Fdf
+NAME := fdf
 CC := clang
 CFLAGS := -Wall -Wextra -g #-Weverything #-Wno-padded# -Werror
 FLAGS := -lmlx -framework OpenGL -framework AppKit
