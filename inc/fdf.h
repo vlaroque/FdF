@@ -6,12 +6,16 @@
 /*   By: vlaroque <vlaroque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 20:46:34 by vlaroque          #+#    #+#             */
-/*   Updated: 2019/04/28 22:20:00 by vlaroque         ###   ########.fr       */
+/*   Updated: 2019/12/11 18:51:11 by vlaroque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
+
+# include <unistd.h>
+# include <mlx.h>
+# define BUFF 1
 
 /*
  * ft_image.h
@@ -70,6 +74,7 @@ typedef struct s_ptstable
 
 typedef struct	s_data
 {
+	int			mode;
 	double		x;
 	double		y;
 	double		z;
@@ -88,15 +93,81 @@ typedef struct	s_data
 	void		*mlx_ptr;
 	void		*win_ptr;
 	void		*img_ptr;
-	t_ptstable	*tab;
+	t_ptstable	tab;
 	t_imgdata	*imgdata;
 }				t_data;
 
+int		print_new_img(t_data *data);
+double	pirotation(int *var, int op);
 int		printgrid(t_data *data);
 
+/*
+** ft_readfile
+*/
+char	*ft_readfile(const char *path);
+typedef struct s_part t_part;
+struct s_part
+{
+	size_t	len;
+	char	str[BUFF];
+	t_part	*next;
+};
+
+/*
+** modes
+*/
+int		iso_mode(t_data *data);
+int		par_mode(t_data *data);
+int		par_instructions(t_data *data, int keycode);
+int		gen_instructions(t_data *data, int keycode);
+int		key_hook(int keycode, t_data *data);
+
+/*
+** segments and seg utils
+*/
+int			ft_segt_landing(t_imgdata *data, t_seg seg);
+int			ft_segt_plane(t_imgdata *data, t_seg seg);
+int			ft_segt_fall(t_imgdata *data, t_seg seg);
+int			ft_segt_rocket(t_imgdata *data, t_seg seg);
+int			ft_segment(t_imgdata *data, t_seg seg);
+
+int			ft_isinwin(int x, int y);
+int			ft_what_color(int x, int x_max, t_seg seg);
+
+/*
+** atois
+*/
+int			ft_isdigit(char c);
+int			ft_ishexa(char c);
+int			mini_atoi_hexa(char *str, int *h);
+int			mini_atoi(char *str, int *h);
+
+/*
+** ft_parsing
+*/
+int		parser(t_data *data, char *str);
+
+/*
+** ft_image
+*/
+t_imgdata	*ft_create_img(void *mlx_ptr, int width, int height);
+int			ft_color_pix(t_imgdata *data, int x, int y, int color);
+
+/*
+** free
+*/
+int	free_t_parts(t_part *init);
+void	free_str(char *str);
+int		free_data(t_data *data);
+
+
+int			x_max(char *str);
+int			y_max(char *str);
+int			space_skip(char *str, int i);
+
 /* window informations */
-# define WIDTH 1000
-# define HEIGHT 800
+# define WIDTH 1920
+# define HEIGHT 1080
 
 //#define M_PI       3.14159265358979323846
 

@@ -6,7 +6,7 @@
 /*   By: vlaroque <vlaroque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 13:24:09 by vlaroque          #+#    #+#             */
-/*   Updated: 2019/03/30 15:39:03 by vlaroque         ###   ########.fr       */
+/*   Updated: 2019/12/11 16:24:24 by vlaroque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <sys/uio.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "ft_readfile.h"
+#include "fdf.h"
 
 char	*ft_fill_str(t_part *init, char *str)
 {
@@ -92,9 +92,16 @@ char	*ft_readfile(const char *path)
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		return (NULL);
-	init = ft_file_to_list(fd);
-	if (!(str = ft_make_str(init)))
+	if (!(init = ft_file_to_list(fd)))
+	{
+		free_t_parts(init);
 		return (NULL);
+	}
+	if (!(str = ft_make_str(init)))
+	{
+		free_t_parts(init);
+		return (NULL);
+	}
 	str = ft_fill_str(init, str);
 	return (str);
 }

@@ -6,15 +6,16 @@
 #    By: vlaroque <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/17 09:52:18 by vlaroque          #+#    #+#              #
-#    Updated: 2019/10/11 19:52:13 by vlaroque         ###   ########.fr        #
+#    Updated: 2019/12/11 19:02:44 by vlaroque         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # FILES
-SRC_FILES := fdf.c ft_image.c ft_parsing.c ft_readfile.c ft_segment.c ft_printgrid.c
-
+SRC_FILES := fdf.c ft_image.c ft_parsing.c ft_readfile.c ft_segment.c \
+	ft_printgrid.c modes.c ft_segment_utils.c atois.c free.c parsing_utils.c
+ 
 # HEADERS NAME
-INCLUDES_NAME := fdf.h ft_image.h ft_parsing.h ft_readfile.h ft_segment.h
+INCLUDES_NAME := fdf.h 
 
 # PATH
 SRC_PATH := ./src/
@@ -38,12 +39,13 @@ FLAGS := -lmlx -framework OpenGL -framework AppKit
 all: $(NAME) 
 
 $(NAME): $(OBJ)
-	@$(CC) $(OBJ) -o $@ $(FLAGS) #-ofast
+	@$(CC) $(OBJ) -o $@ $(FLAGS) #-Ofast
 	@echo "\033[32m$(NAME) generated with succes !\033[0m"
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c $(HEADER)
+#-include $(HEADER)
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir -p $(OBJ_PATH)
-	@$(CC) -o $@ -c $< $(CFLAGS) -I$(INCLUDES_PATH) $(FLAGS)
+	@$(CC) -o $@ -c $< $(CFLAGS) -I$(INCLUDES_PATH)
 	@echo "\033[32mObject's updateded : $@ !\033[0m"
 
 clean:
