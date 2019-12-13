@@ -6,7 +6,7 @@
 /*   By: vlaroque <vlaroque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 19:20:45 by vlaroque          #+#    #+#             */
-/*   Updated: 2019/12/11 19:03:25 by vlaroque         ###   ########.fr       */
+/*   Updated: 2019/12/13 01:30:57 by vlaroque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,12 @@ int		main(int ac, char **av)
 		return (-1);
 	}
 	free_str(str);
-	data.mlx_ptr = mlx_init();
-	data.win_ptr = mlx_new_window(data.mlx_ptr, WIDTH, HEIGHT, "Fdf");
-	data.imgdata = ft_create_img(data.mlx_ptr, WIDTH, HEIGHT);
+	if (!(data.mlx_ptr = mlx_init()))
+		return (free_data(&data));
+	if (!(data.win_ptr = mlx_new_window(data.mlx_ptr, WIDTH, HEIGHT, "Fdf")))
+		return (free_data(&data));
+	if (!(data.imgdata = ft_create_img(data.mlx_ptr, WIDTH, HEIGHT)))
+		return (free_data(&data));
 	first_init(&data);
 	mlx_hook(data.win_ptr, 2, 0, &key_hook, (void *)&data);
 	mlx_loop(data.mlx_ptr);

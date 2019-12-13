@@ -6,7 +6,7 @@
 #    By: vlaroque <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/17 09:52:18 by vlaroque          #+#    #+#              #
-#    Updated: 2019/12/13 00:31:48 by vlaroque         ###   ########.fr        #
+#    Updated: 2019/12/13 00:48:55 by vlaroque         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ INCLUDES_PATH := ./inc/
 # ASSIGNATION SOURCES
 SRC := $(addprefix $(SRC_PATH),$(SRC_FILES))
 OBJ := $(addprefix $(OBJ_PATH),$(SRC_FILES:.c=.o))
+DEP := $(OBJ:%.o=%.d)
 
 # ASSIGNATION INCLUDES
 HEADER := $(addprefix $(INCLUDES_PATH),$(INCLUDES_NAME))
@@ -42,10 +43,10 @@ $(NAME): $(OBJ)
 	@$(CC) $(OBJ) -o $@ $(FLAGS) #-Ofast
 	@echo "\033[32m$(NAME) generated with succes !\033[0m"
 
-#-include $(HEADER)
+-include $(DEP)
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir -p $(OBJ_PATH)
-	@$(CC) -o $@ -c $< $(CFLAGS) -I$(INCLUDES_PATH)
+	@$(CC) -o $@ -c $< $(CFLAGS) -MMD -I$(INCLUDES_PATH)
 	@echo "\033[32mObject's updateded : $@ !\033[0m"
 
 clean:

@@ -6,7 +6,7 @@
 /*   By: vlaroque <vlaroque@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 16:02:29 by vlaroque          #+#    #+#             */
-/*   Updated: 2019/12/12 14:14:36 by vlaroque         ###   ########.fr       */
+/*   Updated: 2019/12/13 01:33:41 by vlaroque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,15 @@ int		free_data(t_data *data)
 		free(data->tab.table);
 		data->tab.table = NULL;
 	}
-
+	if (data->imgdata)
+	{
+		mlx_destroy_image(data->mlx_ptr, data->imgdata);
+		data->imgdata = NULL;
+	}
+	if (data->win_ptr)
+	{
+		mlx_destroy_window(data->mlx_ptr ,data->win_ptr);
+		data->win_ptr = NULL;
+	}
 	return (-1);
 }
