@@ -6,7 +6,7 @@
 /*   By: vlaroque <vlaroque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 20:46:34 by vlaroque          #+#    #+#             */
-/*   Updated: 2019/12/13 01:15:17 by vlaroque         ###   ########.fr       */
+/*   Updated: 2019/12/18 21:46:46 by vlaroque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FDF_H
 # include <unistd.h>
 # include <mlx.h>
-# define BUFF 2048
+# define BUFF 1
 # define WIDTH 1920
 # define HEIGHT 1080
 
@@ -152,6 +152,7 @@ int				ft_color_pix(t_imgdata *data, int x, int y, int color);
 int				free_t_parts(t_part *init);
 void			free_str(char *str);
 int				free_data(t_data *data);
+int				return_message(char *str, int nbr);
 
 int				x_max(char *str);
 int				y_max(char *str);

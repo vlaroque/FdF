@@ -6,14 +6,15 @@
 !_TAG_PROGRAM_VERSION	5.8	//
 BUFF	inc/fdf.h	/^# define BUFF /;"	d
 CC	Makefile	/^CC := clang$/;"	m
-CFLAGS	Makefile	/^CFLAGS := -Wall -Wextra -g #-Weverything #-Wno-padded# -Werror$/;"	m
+CFLAGS	Makefile	/^CFLAGS := -Wall -Wextra -Werror$/;"	m
+DEP	Makefile	/^DEP := $(OBJ:%.o=%.d)$/;"	m
 FDF_H	inc/fdf.h	/^# define FDF_H$/;"	d
 FLAGS	Makefile	/^FLAGS := -lmlx -framework OpenGL -framework AppKit$/;"	m
 HEADER	Makefile	/^HEADER := $(addprefix $(INCLUDES_PATH),$(INCLUDES_NAME))$/;"	m
 HEIGHT	inc/fdf.h	/^# define HEIGHT /;"	d
 INCLUDES_NAME	Makefile	/^INCLUDES_NAME := fdf.h $/;"	m
 INCLUDES_PATH	Makefile	/^INCLUDES_PATH := .\/inc\/$/;"	m
-NAME	Makefile	/^NAME := Fdf$/;"	m
+NAME	Makefile	/^NAME := fdf$/;"	m
 OBJ	Makefile	/^OBJ := $(addprefix $(OBJ_PATH),$(SRC_FILES:.c=.o))$/;"	m
 OBJ_PATH	Makefile	/^OBJ_PATH := .\/obj\/$/;"	m
 SRC	Makefile	/^SRC := $(addprefix $(SRC_PATH),$(SRC_FILES))$/;"	m
@@ -55,13 +56,13 @@ img_ptr	inc/fdf.h	/^	void	*img_ptr;$/;"	m	struct:s_imgdata
 imgdata	inc/fdf.h	/^	t_imgdata	*imgdata;$/;"	m	struct:s_data
 iso_mode	src/modes.c	/^int		iso_mode(t_data *data)$/;"	f
 key_hook	src/modes.c	/^int		key_hook(int keycode, t_data *data)$/;"	f
-len	inc/fdf.h	/^	size_t	len;$/;"	m	struct:s_part
+len	inc/fdf.h	/^	size_t		len;$/;"	m	struct:s_part
 main	src/fdf.c	/^int		main(int ac, char **av)$/;"	f
 mini_atoi	src/atois.c	/^int			mini_atoi(char *str, int *h)$/;"	f
 mini_atoi_hexa	src/atois.c	/^int			mini_atoi_hexa(char *str, int *h)$/;"	f
 mlx_ptr	inc/fdf.h	/^	void		*mlx_ptr;$/;"	m	struct:s_data
 mode	inc/fdf.h	/^	int			mode;$/;"	m	struct:s_data
-next	inc/fdf.h	/^	t_part	*next;$/;"	m	struct:s_part
+next	inc/fdf.h	/^	t_part		*next;$/;"	m	struct:s_part
 par_instructions	src/modes.c	/^int		par_instructions(t_data *data, int keycode)$/;"	f
 par_mode	src/modes.c	/^int		par_mode(t_data *data)$/;"	f
 parser	src/ft_parsing.c	/^int			parser(t_data *data, char *str)$/;"	f
@@ -73,24 +74,25 @@ printgrid_xmax_ymax	src/ft_printgrid.c	/^int			printgrid_xmax_ymax(t_data *data)
 printgrid_zero	src/ft_printgrid.c	/^int			printgrid_zero(t_data *data)$/;"	f
 pt0	inc/fdf.h	/^	t_point	pt0;$/;"	m	struct:s_seg
 pt1	inc/fdf.h	/^	t_point	pt1;$/;"	m	struct:s_seg
+return_message	src/free.c	/^int		return_message(char *str, int nbr)$/;"	f
 s_data	inc/fdf.h	/^typedef struct	s_data$/;"	s
-s_imgdata	inc/fdf.h	/^typedef		struct s_imgdata$/;"	s
-s_part	inc/fdf.h	/^struct s_part$/;"	s
-s_point	inc/fdf.h	/^typedef		struct s_point$/;"	s
+s_imgdata	inc/fdf.h	/^typedef struct	s_imgdata$/;"	s
+s_part	inc/fdf.h	/^struct			s_part$/;"	s
+s_point	inc/fdf.h	/^typedef struct	s_point$/;"	s
 s_ptdata	inc/fdf.h	/^typedef struct	s_ptdata$/;"	s
-s_ptstable	inc/fdf.h	/^typedef struct s_ptstable$/;"	s
-s_seg	inc/fdf.h	/^typedef		struct s_seg$/;"	s
+s_ptstable	inc/fdf.h	/^typedef struct	s_ptstable$/;"	s
+s_seg	inc/fdf.h	/^typedef struct	s_seg$/;"	s
 seg	src/ft_printgrid.c	/^void		seg(t_data *data, t_ptdata one, t_ptdata two)$/;"	f
 size_line	inc/fdf.h	/^	int		size_line;$/;"	m	struct:s_imgdata
 space_skip	src/parsing_utils.c	/^int			space_skip(char *str, int i)$/;"	f
-str	inc/fdf.h	/^	char	str[BUFF];$/;"	m	struct:s_part
+str	inc/fdf.h	/^	char		str[BUFF];$/;"	m	struct:s_part
 t_data	inc/fdf.h	/^}				t_data;$/;"	t	typeref:struct:s_data
-t_imgdata	inc/fdf.h	/^}			t_imgdata;$/;"	t	typeref:struct:s_imgdata
-t_part	inc/fdf.h	/^typedef struct s_part t_part;$/;"	t	typeref:struct:s_part
-t_point	inc/fdf.h	/^}			t_point;$/;"	t	typeref:struct:s_point
+t_imgdata	inc/fdf.h	/^}				t_imgdata;$/;"	t	typeref:struct:s_imgdata
+t_part	inc/fdf.h	/^typedef struct s_part	t_part;$/;"	t	typeref:struct:s_part
+t_point	inc/fdf.h	/^}				t_point;$/;"	t	typeref:struct:s_point
 t_ptdata	inc/fdf.h	/^}				t_ptdata;$/;"	t	typeref:struct:s_ptdata
 t_ptstable	inc/fdf.h	/^}				t_ptstable;$/;"	t	typeref:struct:s_ptstable
-t_seg	inc/fdf.h	/^}			t_seg;$/;"	t	typeref:struct:s_seg
+t_seg	inc/fdf.h	/^}				t_seg;$/;"	t	typeref:struct:s_seg
 tab	inc/fdf.h	/^	t_ptstable	tab;$/;"	m	struct:s_data
 table	inc/fdf.h	/^	t_ptdata	*table;$/;"	m	struct:s_ptstable
 trnspoint	src/ft_printgrid.c	/^t_point		trnspoint(t_data *d, t_ptdata ptdata)$/;"	f

@@ -6,7 +6,7 @@
 /*   By: vlaroque <vlaroque@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 16:02:29 by vlaroque          #+#    #+#             */
-/*   Updated: 2019/12/13 01:33:41 by vlaroque         ###   ########.fr       */
+/*   Updated: 2019/12/18 22:11:35 by vlaroque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,18 @@ int		free_data(t_data *data)
 	}
 	if (data->win_ptr)
 	{
-		mlx_destroy_window(data->mlx_ptr ,data->win_ptr);
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 		data->win_ptr = NULL;
 	}
 	return (-1);
+}
+
+int		return_message(char *str, int nbr)
+{
+	while (*str)
+	{
+		write(2, str, 1);
+		str++;
+	}
+	return (nbr);
 }

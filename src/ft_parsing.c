@@ -6,7 +6,7 @@
 /*   By: vlaroque <vlaroque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 16:36:13 by vlaroque          #+#    #+#             */
-/*   Updated: 2019/12/11 18:49:53 by vlaroque         ###   ########.fr       */
+/*   Updated: 2019/12/18 21:13:36 by vlaroque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ int			parser(t_data *data, char *str)
 	i = 0;
 	data->tab.x_max = x_max(str);
 	data->tab.y_max = y_max(str);
+	if (data->tab.x_max == 0 || data->tab.y_max == 0)
+		return (0);
 	if (!(data->tab.table = (t_ptdata *)malloc((sizeof(t_ptdata)
 						* data->tab.x_max * data->tab.y_max))))
 		return (0);

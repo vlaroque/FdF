@@ -6,7 +6,7 @@
 /*   By: vlaroque <vlaroque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 13:24:09 by vlaroque          #+#    #+#             */
-/*   Updated: 2019/12/11 16:24:24 by vlaroque         ###   ########.fr       */
+/*   Updated: 2019/12/19 08:25:00 by vlaroque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,23 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "fdf.h"
+
+int		legit_char(char c)
+{
+	const char	tab[] = "1234567890 ,xabcdefABCDEF\n";
+	char		*ptr;
+
+	if (c == '\0')
+		return (1);
+	ptr = (char *)tab;
+	while (*ptr)
+	{
+		if (c == *ptr)
+			return (1);
+		ptr++;
+	}
+	return (0);
+}
 
 char	*ft_fill_str(t_part *init, char *str)
 {
@@ -78,6 +95,8 @@ t_part	*ft_file_to_list(int fd)
 			return (NULL);
 		save->next = next;
 		next->len = read(fd, next->str, BUFF);
+		if (!(legit_char(*(next->str))))
+			return (NULL);
 		next->next = NULL;
 	}
 	return (init);

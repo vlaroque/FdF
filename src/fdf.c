@@ -6,7 +6,7 @@
 /*   By: vlaroque <vlaroque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 19:20:45 by vlaroque          #+#    #+#             */
-/*   Updated: 2019/12/13 01:30:57 by vlaroque         ###   ########.fr       */
+/*   Updated: 2019/12/19 07:58:26 by vlaroque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,15 @@ int		main(int ac, char **av)
 	char			*str;
 	static t_data	data;
 
-	(void)ac;
+	if (ac != 2)
+		return (return_message("ERROR: too few/many arguments\n", -1));
 	path = av[1];
 	if (!(str = ft_readfile(path)))
-		return (-1);
+		return (return_message("ERROR: incorrect file\n", -1));
 	if (!(parser(&data, str)))
 	{
 		free_str(str);
-		return (-1);
+		return (return_message("ERROR: incorrect parsing\n", -1));
 	}
 	free_str(str);
 	if (!(data.mlx_ptr = mlx_init()))

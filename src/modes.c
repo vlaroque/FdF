@@ -6,7 +6,7 @@
 /*   By: vlaroque <vlaroque@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/08 05:55:20 by vlaroque          #+#    #+#             */
-/*   Updated: 2019/12/11 19:03:01 by vlaroque         ###   ########.fr       */
+/*   Updated: 2019/12/19 08:32:04 by vlaroque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int		iso_mode(t_data *data)
 
 int		par_mode(t_data *data)
 {
-	data->zoom = 20.0;
+	data->zoom = (double)WIDTH / (double)(data->tab.x_max + data->tab.y_max);
+	data->zoom *= 1.2;
 	data->z_proportion = 1.0;
 	data->mode = 1;
 	data->w_int = 0;
@@ -91,6 +92,8 @@ int		key_hook(int keycode, t_data *data)
 	par_instructions(data, keycode);
 	gen_instructions(data, keycode);
 	print_new_img(data);
+	printf("%d  z|%f|", WIDTH / (((data->tab.x_max + data->tab.y_max) / 2)), data->zoom);
+	printf("xmax %d ymax %d larg %d\n", data->tab.x_max, data->tab.y_max, WIDTH);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 			data->imgdata->img_ptr, 0, 0);
 	return (0);
